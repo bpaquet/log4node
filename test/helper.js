@@ -38,17 +38,21 @@ function check_file(file, target_file) {
   }
 }
 
-function create_test(name, file_to_launch, final_file, topic_callback, check_callback) {
+function create_test(name, file_to_launch, final_file, topic_callback, check_callback, test_callback) {
   test_name = file_to_launch.match(/\/([^\/]+)\.js$/)[1]
   test = {}
   test[test_name] = {
     topic: function () {
-      var callback = this.callback;
       remove_test_files();
-      launch('node', [file_to_launch], 'process.pid', function(code) {
-        callback(null, code);
-      });
-      topic_callback();
+      test_callback = test_callback || function(f, callback) {
+        launch('node', [f], 'process.pid', function(code) {
+          callback(null, code);
+        });
+        if (topic_callback) {
+          topic_callback();
+        }
+      };
+      test_callback(file_to_launch, this.callback);
     },
       
     'check_code': function(code) {
@@ -58,6 +62,7 @@ function create_test(name, file_to_launch, final_file, topic_callback, check_cal
     'check content': function (code) {
       check_file(final_file);
     }
+
   }
   if (check_callback) {
     test[test_name]['specific_check'] = function(code) {
