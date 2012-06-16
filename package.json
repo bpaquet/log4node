@@ -5,6 +5,17 @@
   "author": "Bertrand Paquet <bertrand.paquet@gmail.com>",
   "keywords": ["log", "logger", "cluster", "logrotate"],
   "main": "./lib/cluster-log.js",
+  "homepage": "https://github.com/bpaquet/cluster-log",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bpaquet/cluster-log.git"
+  },
+  "licenses": [
+    {
+      "type": "Apache2",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0" 
+    }
+  ],
   "devDependencies": {
     "vows": "0.6.x"
   },
