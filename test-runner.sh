@@ -4,8 +4,8 @@ set -e
 
 cd test
 
-for test in `ls *-test.js`; do
+for test in `ls test*.js`; do
 	echo "Launching test : $test"
-	vows $test --spec
+	NODE_PATH=../lib vows $test --spec
 	echo ""
 done
