@@ -10,12 +10,12 @@ This module is inspired from [this module](https://github.com/visionmedia/log.js
 
 ## Installation
 
-    npm install cluster-log
+    npm install log4node
   
 ## Usage
 
-    var ClusterLog = require('cluster-log'),
-        log = new ClusterLog('warning', 'test.log');
+    var Log4Node = require('log4node'),
+      log = new Log4Node('warning', 'test.log');
 
     log.error("this is a log");
     log.debug("this is a debug log");
@@ -40,7 +40,7 @@ After creating worker, just call:
     var worker = cluster.fork();
     log.setup_worker(worker);
     
-A full example can be found [here](https://github.com/bpaquet/cluster-log/blob/master/test/cluster/test1.js).
+A full example can be found [here](https://github.com/bpaquet/log4node/blob/master/test/cluster/test1.js).
 
 ## Repoen log file
 
