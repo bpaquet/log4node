@@ -7,6 +7,6 @@ log.warning("titi1");
 
 setTimeout(function() {
   log.error("titi2")
-}, 1000);
+}, 2000);
 
 
