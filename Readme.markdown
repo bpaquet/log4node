@@ -4,6 +4,8 @@ This module is designed to be used with Node Cluster in production:
 * one log file for all workers
 * compatible with logrotate : an HUP signal reopen the log file
 
+Version 0.0.1 is compatible with node 0.6.x, and has been tested with node 0.6.19.
+
 This module is inspired from [this module](https://github.com/visionmedia/log.js).
 
 # How to use it
