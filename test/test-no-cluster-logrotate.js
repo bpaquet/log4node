@@ -6,5 +6,5 @@ helper.create_test('no-cluster-logrotate', 'no-cluster-logrotate/test1.js', 'no-
     helper.launch("/usr/local/sbin/logrotate", ['-f', 'no-cluster-logrotate/logrotate.conf'], null, function(code) {});
   }, 200);
 }, function() {
-  helper.check_file("no-cluster-logrotate/output3", "test.log.1");
+  helper.check_file("no-cluster-logrotate/output1", "test.log.1");
 }).export(module);

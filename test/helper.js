@@ -29,7 +29,7 @@ function check_file(file, target_file) {
   target_file = target_file || 'test.log';
   content = fs.readFileSync(target_file, 'utf-8');
   regexp = fs.readFileSync(file, 'utf-8');
-  if (!content.match(new RegExp(regexp))) {
+  if (!content.match(new RegExp("^" + regexp + "$"))) {
     console.log("Content");
     console.log(content);
     console.log("Regexp");
