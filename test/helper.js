@@ -27,7 +27,15 @@ function remove_test_files() {
 
 function check_file(file, target_file) {
   target_file = target_file || 'test.log';
-  assert.equal(fs.readFileSync(target_file, 'utf-8'), fs.readFileSync(file, 'utf-8'));
+  content = fs.readFileSync(target_file, 'utf-8');
+  regexp = fs.readFileSync(file, 'utf-8');
+  if (!content.match(new RegExp(regexp))) {
+    console.log("Content");
+    console.log(content);
+    console.log("Regexp");
+    console.log(regexp);
+     assert.fail("File not match");
+  }
 }
 
 function create_test(name, file_to_launch, final_file, topic_callback, check_callback) {
