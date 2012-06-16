@@ -1,0 +1,15 @@
+{
+  "name": "cluster-log",
+  "description": "Logger for node cluster, and compatible with logrotate",
+  "version": "0.0.1",
+  "author": "Bertrand Paquet <bertrand.paquet@gmail.com>",
+  "keywords": ["log", "logger", "cluster", "logrotate"],
+  "main": "./lib/cluster-log.js",
+  "devDependencies": {
+    "vows": "0.6.x"
+  },
+  "scripts": {
+    "test": "./test-runner.sh"
+  },
+  "engines": { "node": ">= 0.6.0" }
+}
