@@ -60,7 +60,9 @@ function create_test(name, file_to_launch, final_file, topic_callback, check_cal
     },
 
     'check content': function (code) {
-      check_file(final_file);
+      if (final_file) {
+        check_file(final_file);
+      }
     }
 
   }

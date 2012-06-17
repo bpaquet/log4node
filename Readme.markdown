@@ -2,7 +2,7 @@
 
 This module is designed to be used with Node Cluster in production:
 * one log file for all workers
-* compatible with logrotate : an HUP signal reopen the log file
+* compatible with logrotate : an USR2 signal reopen the log file
 
 Version 0.0.1 is compatible with node 0.6.x, and has been tested with node 0.6.19.
 
@@ -46,9 +46,9 @@ A full example can be found [here](https://github.com/bpaquet/log4node/blob/mast
 
 ## Repoen log file
 
-Just send HUP signal to node process, or, in cluster mode, to master node process:
+Just send USR2 signal to node process, or, in cluster mode, to master node process:
 
-    kill -HUP pid
+    kill -USR2 pid
     
 Example of logrotate file:
 
@@ -56,7 +56,7 @@ Example of logrotate file:
       rotate 5
       weekly
       postrotate
-        kill -HUP `cat process.pid`
+        kill -USR2 `cat process.pid`
       endscript
     }
     
