@@ -4,7 +4,7 @@ This module is designed to be used with Node Cluster in production:
 * one log file for all workers
 * compatible with logrotate : an USR2 signal reopen the log file
 
-Version 0.0.1 is compatible with node 0.6.x, and has been tested with node 0.6.19.
+Special branch for node v0.7.x
 
 This module is inspired from [this module](https://github.com/visionmedia/log.js).
 
@@ -37,10 +37,9 @@ Default prefix is: `[%d] %l `
     
 ## Cluster mode
 
-After creating worker, just call:
+After creating worker, just call after forking workers:
 
-    var worker = cluster.fork();
-    log.setup_worker(worker);
+    log.setup_workers();
     
 A full example can be found [here](https://github.com/bpaquet/log4node/blob/master/test/cluster/test1.js).
 

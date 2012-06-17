@@ -6,14 +6,15 @@ log.set_prefix("%l %p : ");
 
 if (cluster.isMaster) {
   for (var i = 0; i < 4; i++) {
-    var worker = cluster.fork();
-    log.setup_worker(worker);
+    cluster.fork();
   }
 
+  log.setup_workers();
+  
   log.error("Master started");
 
-  cluster.on('death', function(worker) {
-    log.error('Worker ' + worker.pid + ' died');
+  cluster.on('exit', function(worker) {
+    log.error('Worker ' + worker.process.pid + ' died');
   });
 
 } else {
