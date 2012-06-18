@@ -37,9 +37,9 @@ Default prefix is: `[%d] %l `
     
 ## Cluster mode
 
-After creating worker, just call after forking workers:
+Workers processes will send logs to the cluster master for writing to file.
 
-    log.setup_workers();
+Setup is fully transparent for developper.
     
 A full example can be found [here](https://github.com/bpaquet/log4node/blob/master/test/cluster/test1.js).
 

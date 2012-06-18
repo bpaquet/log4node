@@ -9,8 +9,6 @@ if (cluster.isMaster) {
     cluster.fork();
   }
 
-  log.setup_workers();
-  
   log.error("Master started");
 
   cluster.on('exit', function(worker) {
