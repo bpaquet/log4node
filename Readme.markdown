@@ -4,7 +4,7 @@ This module is designed to be used with Node Cluster in production:
 * one log file for all workers
 * compatible with logrotate : an USR2 signal reopen the log file
 
-This module is compatible with node 0.8.x. For the node 0.6.x, please use version 0.0.1
+This module is compatible with node 0.8.x. For the node 0.6.x, please use version 0.0.1 of this module.
 
 This module is inspired from [this module](https://github.com/visionmedia/log.js).
 
