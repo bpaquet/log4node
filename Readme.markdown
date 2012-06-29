@@ -4,7 +4,7 @@ This module is designed to be used with Node Cluster in production:
 * one log file for all workers
 * compatible with logrotate : an USR2 signal reopen the log file
 
-Special branch for node v0.7.x
+This module is compatible with node 0.8.x. For the node 0.6.x, please use version 0.0.1
 
 This module is inspired from [this module](https://github.com/visionmedia/log.js).
 
@@ -13,7 +13,7 @@ This module is inspired from [this module](https://github.com/visionmedia/log.js
 ## Installation
 
     npm install log4node
-  
+
 ## Usage
 
     var Log4Node = require('log4node'),
@@ -34,13 +34,13 @@ You can use following field in prefix:
 * `%l` : log level
 
 Default prefix is: `[%d] %l `
-    
+
 ## Cluster mode
 
 Workers processes will send logs to the cluster master for writing to file.
 
 Setup is fully transparent for developper.
-    
+
 A full example can be found [here](https://github.com/bpaquet/log4node/blob/master/test/cluster/test1.js).
 
 ## Repoen log file
@@ -48,7 +48,7 @@ A full example can be found [here](https://github.com/bpaquet/log4node/blob/mast
 Just send USR2 signal to node process, or, in cluster mode, to master node process:
 
     kill -USR2 pid
-    
+
 Example of logrotate file:
 
     /var/log/node.log {
@@ -58,7 +58,7 @@ Example of logrotate file:
         kill -USR2 `cat process.pid`
       endscript
     }
-    
+
 # License
 
 Copyright 2012 Bertrand Paquet
