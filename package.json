@@ -1,8 +1,11 @@
 {
   "name": "log4node",
   "description": "Logger for node cluster, compatible with logrotate",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "author": "Bertrand Paquet <bertrand.paquet@gmail.com>",
+  "contributors": [
+    "Anthony Barré <anthony.barre87@gmail.com>"
+  ],
   "keywords": ["log", "logger", "cluster", "logrotate"],
   "main": "./lib/log4node.js",
   "homepage": "https://github.com/bpaquet/log4node",
