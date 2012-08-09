@@ -1,5 +1,5 @@
-var Log4Node = require('log4node'),
-    log = new Log4Node('warning', 'test.log');
+var log = require('log4node');
+log.init('warning', 'test.log');
 
 log.setPrefix("[%l - toto] ");
 

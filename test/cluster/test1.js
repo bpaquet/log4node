@@ -1,6 +1,6 @@
 var cluster = require('cluster'),
-    Log4Node = require('log4node'),
-    log = new Log4Node('warning', 'test.log');
+    log = require('log4node');
+log.init('warning', 'test.log');
 
 log.setPrefix("%l %p : ");
 

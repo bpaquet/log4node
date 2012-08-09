@@ -16,11 +16,38 @@ This module is inspired from [this module](https://github.com/visionmedia/log.js
 
 ## Usage
 
-    var Log4Node = require('log4node'),
-      log = new Log4Node('warning', 'test.log');
+###initialization
 
-    log.error("this is a log");
-    log.debug("this is a debug log");
+```js
+var log = require('log4node'),
+
+//should be called only once for a program
+log.init('debug', 'test.log');
+```
+
+###classical methods
+
+The methods `error`, `warning`, `info` and debug are similar to `console.log`.
+
+```js
+log.error("this is an error message");
+// [Wed, 02 May 2012 16:01:14 GMT] ERROR this is an error message
+
+log.warning("this is a warning message");
+// [Wed, 02 May 2012 16:01:14 GMT] WARNING this is a warning message
+
+log.info("this is an info");
+// [Wed, 02 May 2012 16:01:14 GMT] INFO this is an info
+
+log.debug("this is a debug message");
+// [Wed, 02 May 2012 16:01:14 GMT] DEBUG this is a DEBUG
+
+log.debug("%j", {"a" : 1, "b" : 2, "c" : 3});
+// [Wed, 02 May 2012 16:01:14 GMT] DEBUG {"a":1,"b":2,"c":3}
+
+log.debug('%s:%s', 'foo', 'bar', 'baz');
+// [Wed, 02 May 2012 16:01:14 GMT] DEBUG foo:bar baz
+```
 
 ## Prefix
 
