@@ -27,7 +27,7 @@ log.init('debug', 'test.log');
 
 ###classical methods
 
-The methods `error`, `warning`, `info` and debug are similar to `console.log`.
+The methods `error`, `warning`, `info` and `debug` are similar to `console.log`.
 
 ```js
 log.error("this is an error message");
