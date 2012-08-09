@@ -6,7 +6,7 @@ This module is designed to be used with Node Cluster in production:
 
 This module is compatible with node 0.8.x. For the node 0.6.x, please use version 0.0.1 of this module.
 
-This module is inspired from [this module](https://github.com/visionmedia/log.js).
+This module is inspired from [this module](https://github.com/visionmedia/log.js) and the [console API](http://nodejs.org/api/stdio.html).
 
 # How to use it
 
@@ -49,6 +49,40 @@ log.debug('%s:%s', 'foo', 'bar', 'baz');
 // [Wed, 02 May 2012 16:01:14 GMT] DEBUG foo:bar baz
 ```
 
+###extra methods from console
+You can also use the function `time`, `timeEnd`, `trace`, `dir`that come from the console API.
+
+*time and timeEnd*
+```js
+log.debug.time('100-elements');
+for (var i = 0; i < 100; i++) {
+  ;
+}
+log.debug.timeEnd('100-elements');
+// [Wed, 02 May 2012 16:01:14 GMT] DEBUG 100-elements: 1156ms
+```
+
+*trace*
+```js
+function g() {
+  log.debug.trace("SUPER TRACE");
+}
+function f() {
+  g();
+}
+f();
+/*-> [Wed, 02 May 2012 16:01:14 GMT] DEBUG Trace: SUPER TRACE
+        at g (repl:3:9)
+        at f (repl:5:1)
+        ...
+*/
+```
+
+*dir*
+```js
+log.debug.dir({"a" : 1, "b" : 2, "c" : function () {}});
+// [Wed, 02 May 2012 16:01:14 GMT] DEBUG { a: 1, b: 2, c: [Function] }
+```
 ## Prefix
 
 Prefix of log lines can be changed:
@@ -70,7 +104,7 @@ Setup is fully transparent for developper.
 
 A full example can be found [here](https://github.com/bpaquet/log4node/blob/master/test/cluster/test1.js).
 
-## Repoen log file
+## Reopen log file
 
 Just send USR2 signal to node process, or, in cluster mode, to master node process:
 
