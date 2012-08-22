@@ -1,8 +1,8 @@
 var cluster = require('cluster'),
-    Log4Node = require('log4node'),
-    log = new Log4Node('warning', 'test.log');
+    log = require('log4node');
+log.init('warning', 'test.log');
 
-log.set_prefix("%l %p : ");
+log.setPrefix("%l %p : ");
 
 if (cluster.isMaster) {
   for (var i = 0; i < 4; i++) {

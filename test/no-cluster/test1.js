@@ -1,7 +1,7 @@
-var Log4Node = require('log4node'),
-    log = new Log4Node('warning', 'test.log');
+var log = require('log4node');
+log.init('warning', 'test.log');
 
-log.set_prefix("[%l - toto] ");
+log.setPrefix("[%l - toto] ");
 
 log.warning("titi1");
 log.info("toto2");
@@ -9,7 +9,7 @@ log.info("toto2");
 setTimeout(function() {
   log.error("titi4")
   log.debug("toto5");
-  log.set_loglevel("debug");
+  log.setLogLevel("debug");
   log.debug("toto6");
 }, 500);
 
