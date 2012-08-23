@@ -35,7 +35,7 @@ function check_file(file, target_file) {
     console.log(content);
     console.log("Regexp");
     console.log(regexp);
-     assert.fail("File not match");
+    assert.fail("File not match");
   }
 }
 
