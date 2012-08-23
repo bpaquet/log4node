@@ -26,7 +26,7 @@ This module is inspired from [this module](https://github.com/visionmedia/log.js
 
 Prefix of log lines can be changed:
 
-    log.set_prefix("%d - %p ");
+    log.setPrefix("%d - %p ");
 
 You can use following field in prefix:
 * `%d` : current date
