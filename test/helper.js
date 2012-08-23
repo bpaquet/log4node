@@ -1,7 +1,8 @@
 var fs = require('fs'),
     vows = require('vows'),
     assert = require('assert'),
-    spawn = require('child_process').spawn;
+    spawn = require('child_process').spawn,
+    whereis = require('whereis');
 
 function launch(command, args, pid_file, callback) {
   var child  = spawn(command, args);
@@ -54,7 +55,7 @@ function create_test(name, file_to_launch, final_file, topic_callback, check_cal
       };
       test_callback(file_to_launch, this.callback);
     },
-      
+
     'check_code': function(code) {
       assert.equal(code, 0);
     },
@@ -74,9 +75,20 @@ function create_test(name, file_to_launch, final_file, topic_callback, check_cal
   return vows.describe(name).addBatch(test);
 }
 
+function logrotate(callback) {
+  whereis('logrotate', function(err, res) {
+    if(err) {
+      console.log("You must have logrotate in your path to run all tests.");
+     return process.exit(1);
+    }
+    callback(res);
+  });
+}
+
 module.exports = {
   launch: launch,
   remove_test_files: remove_test_files,
   check_file: check_file,
-  create_test: create_test
+  create_test: create_test,
+  logrotate: logrotate,
 };

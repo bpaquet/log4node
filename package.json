@@ -13,11 +13,12 @@
   "licenses": [
     {
       "type": "Apache2",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0" 
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
     }
   ],
   "devDependencies": {
-    "vows": "0.6.x"
+    "vows": "0.6.x",
+    "whereis": "0.0.2"
   },
   "scripts": {
     "test": "./test-runner.sh"
