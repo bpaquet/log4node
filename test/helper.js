@@ -39,6 +39,11 @@ function check_file(file, target_file) {
   }
 }
 
+function check_file_content(file, expected_content) {
+  content = fs.readFileSync(file, 'utf-8');
+  assert.equal(content, expected_content);
+}
+
 function create_test(name, file_to_launch, final_file, topic_callback, check_callback, test_callback) {
   test_name = file_to_launch.match(/\/([^\/]+)\.js$/)[1]
   test = {}
@@ -64,13 +69,16 @@ function create_test(name, file_to_launch, final_file, topic_callback, check_cal
       if (final_file) {
         check_file(final_file);
       }
-    }
+    },
 
   }
   if (check_callback) {
     test[test_name]['specific_check'] = function(code) {
       check_callback();
     }
+  }
+  test[test_name]['remove test files'] = function(code) {
+    remove_test_files();
   }
   return vows.describe(name).addBatch(test);
 }
@@ -89,6 +97,7 @@ module.exports = {
   launch: launch,
   remove_test_files: remove_test_files,
   check_file: check_file,
+  check_file_content: check_file_content,
   create_test: create_test,
   logrotate: logrotate,
 };
