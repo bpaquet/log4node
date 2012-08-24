@@ -6,16 +6,24 @@ var fs = require('fs'),
 
 function launch(command, args, pid_file, callback) {
   var child  = spawn(command, args);
+  var stdout = '';
+
   if (pid_file) {
     fs.writeFileSync('process.pid', child.pid);
   }
+
   child.stdout.on('data', function (data) {
     console.log('child stdout [' + command + ']: ' + data);
+    stdout += data;
   });
+
   child.stderr.on('data', function (data) {
     console.log('child stderr [' + command + ']: ' + data);
   });
-  child.on('exit', callback);
+
+  child.on('exit', function(code) {
+    callback(code, stdout)
+  });
 };
 
 function remove_test_files() {
@@ -26,9 +34,7 @@ function remove_test_files() {
   });
 };
 
-function check_file(file, target_file) {
-  target_file = target_file || 'test.log';
-  content = fs.readFileSync(target_file, 'utf-8');
+function check_content(content, file) {
   regexp = fs.readFileSync(file, 'utf-8');
   if (!content.match(new RegExp("^" + regexp + "$"))) {
     console.log("Content");
@@ -37,6 +43,12 @@ function check_file(file, target_file) {
     console.log(regexp);
     assert.fail("File not match");
   }
+}
+
+function check_file(file, target_file) {
+  target_file = target_file || 'test.log';
+  content = fs.readFileSync(target_file, 'utf-8');
+  check_content(content, file);
 }
 
 function check_file_content(file, expected_content) {
@@ -51,8 +63,8 @@ function create_test(name, file_to_launch, final_file, topic_callback, check_cal
     topic: function () {
       remove_test_files();
       test_callback = test_callback || function(f, callback) {
-        launch('node', [f], 'process.pid', function(code) {
-          callback(null, code);
+        launch('node', [f], 'process.pid', function(code, stdout) {
+          callback(null, code, stdout);
         });
         if (topic_callback) {
           topic_callback();
@@ -65,7 +77,7 @@ function create_test(name, file_to_launch, final_file, topic_callback, check_cal
       assert.equal(code, 0);
     },
 
-    'check content': function (code) {
+    'check content': function () {
       if (final_file) {
         check_file(final_file);
       }
@@ -73,11 +85,11 @@ function create_test(name, file_to_launch, final_file, topic_callback, check_cal
 
   }
   if (check_callback) {
-    test[test_name]['specific_check'] = function(code) {
-      check_callback();
+    test[test_name]['specific_check'] = function(err, code, stdout) {
+      check_callback(stdout);
     }
   }
-  test[test_name]['remove test files'] = function(code) {
+  test[test_name]['remove test files'] = function() {
     remove_test_files();
   }
   return vows.describe(name).addBatch(test);
@@ -97,6 +109,7 @@ module.exports = {
   launch: launch,
   remove_test_files: remove_test_files,
   check_file: check_file,
+  check_content: check_content,
   check_file_content: check_file_content,
   create_test: create_test,
   logrotate: logrotate,

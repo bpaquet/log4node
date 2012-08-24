@@ -1,6 +1,5 @@
 var cluster = require('cluster'),
-    log4node = require('log4node'),
-    log = new log4node.Log4Node('warning', 'test.log');
+    log = require('log4node');
 
 log.setPrefix("%l %p : ");
 
@@ -14,9 +13,10 @@ if (cluster.isMaster) {
   cluster.on('exit', function(worker) {
     log.error('Worker ' + worker.process.pid + ' died');
   });
+
 } else {
   log.error("Hello, I'm a worker");
   setTimeout(function() {
     process.exit();
-  }, 2000);
+  }, 100);
 }

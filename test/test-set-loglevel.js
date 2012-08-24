@@ -3,15 +3,17 @@ var helper = require('./helper.js'),
     assert = require('assert'),
     log4node = require('log4node');
 
-vows.describe('Test strange params').addBatch({
-  'when calling log.info': {
+vows.describe('Test ').addBatch({
+  'set log level': {
     'topic': function() {
       var logger = new log4node.Log4Node('info', 'test.log');
       logger.setPrefix('');
 
-      logger.info('log me baby', 2, 5);
-      logger.info(undefined);
-      logger.info(null);
+      logger.debug('start_debug');
+      logger.info('start');
+      logger.setLogLevel('critical');
+      logger.info('stop');
+      logger.critical('stop_critical')
 
       var callback = this.callback;
       setTimeout(function() {
@@ -20,7 +22,7 @@ vows.describe('Test strange params').addBatch({
     },
     'check': function(err) {
       assert.ifError(err);
-      helper.check_file_content('test.log', 'log me baby 2 5\nundefined\nnull\n');
+      helper.check_file_content('test.log', 'start\nstop_critical\n');
       helper.remove_test_files();
     }
   }

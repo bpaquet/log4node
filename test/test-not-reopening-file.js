@@ -3,7 +3,7 @@ var cluster = require('cluster'),
     assert = require('assert'),
     log4node = require('log4node');
 
-vows.describe('Test process.send').addBatch({
+vows.describe('Test not reopening file').addBatch({
   'is not called when a worker process is disconnected': {
     'topic': function() {
       // setup process as a worker process

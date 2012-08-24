@@ -16,11 +16,38 @@ This module is inspired from [this module](https://github.com/visionmedia/log.js
 
 ## Usage
 
-    var Log4Node = require('log4node'),
-      log = new Log4Node('warning', 'test.log');
+Default logger:
+
+    var log = require('log4node');
+
+    log.error("this is a log");
+
+Your custom logger:
+
+    var log4node = require('log4node');
+        log = new log4node.Log4Node('warning', 'test.log');
 
     log.error("this is a log");
     log.debug("this is a debug log");
+
+## Log level
+
+Log level can be adjusted for each logger:
+
+    log.setLogLevel('info');
+
+Log level for default logger is 'info'.
+
+Available log level are:
+
+* emergency
+* alert
+* critical
+* error
+* warning
+* notice
+* info
+* debug
 
 ## Prefix
 
