@@ -22,6 +22,10 @@ Default logger:
 
     log.error("this is a log");
 
+Note : you can reconfigure default logger by calling
+
+    log.reconfigure('info', 'toto.log');
+
 Your custom logger:
 
     var log4node = require('log4node');
