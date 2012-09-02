@@ -2,7 +2,7 @@
 
 This module is designed to be used with Node Cluster in production:
 * one log file for all workers
-* compatible with logrotate : an USR2 signal reopen the log file
+* compatible with logrotate: an USR2 signal reopen the log file
 
 This module is compatible with node 0.8.x. For the node 0.6.x, please use version 0.0.1 of this module.
 
@@ -22,9 +22,13 @@ Default logger:
 
     log.error("this is a log");
 
-Note : you can reconfigure default logger by calling
+Will output to console.
+
+Note: you can reconfigure default logger by calling
 
     log.reconfigure('info', 'toto.log');
+
+Will now write into `toto.log`
 
 Your custom logger:
 
@@ -42,7 +46,7 @@ Log level can be adjusted for each logger:
 
 Log level for default logger is 'info'.
 
-Available log level are:
+Available log levels are:
 
 * emergency
 * alert
@@ -60,9 +64,9 @@ Prefix of log lines can be changed:
     log.setPrefix("%d - %p ");
 
 You can use following field in prefix:
-* `%d` : current date
-* `%p` : current process id
-* `%l` : log level
+* `%d`: current date
+* `%p`: current process id
+* `%l`: log level
 
 Default prefix is: `[%d] %l `
 
