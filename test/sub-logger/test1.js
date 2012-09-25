@@ -1,10 +1,11 @@
-var log4node = require('../../lib/log4node'),
-    log = new log4node.Log4Node('warning', 'test.log'),
-    sublogger1 = new log4node.Log4Node('warning', null, log),
-    sublogger2 = new log4node.Log4Node('warning', null, log);
+var log = require('../../lib/log4node');
 
-sublogger1.setPrefix("SUB1 - ");
-sublogger2.setPrefix("SUB2 - ");
+log.reconfigure('warning', 'test.log');
+
+log.setPrefix("%l %p : ");
+
+sublogger1 = log.clone("SUB1 - "),
+sublogger2 = log.clone("SUB2 - ");
 
 sublogger1.warning("titi1");
 
