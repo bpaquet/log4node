@@ -6,7 +6,7 @@ var helper = require('./helper.js'),
 vows.describe('Test strange params').addBatch({
   'when calling log.info': {
     'topic': function() {
-      var logger = new log4node.Log4Node('info', 'test.log');
+      var logger = new log4node.Log4Node({level: 'info', file: 'test.log'});
       logger.setPrefix('');
 
       logger.info('log me baby', 2, 5);

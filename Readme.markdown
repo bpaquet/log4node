@@ -26,14 +26,14 @@ Will output to console.
 
 Note: you can reconfigure default logger by calling
 
-    log.reconfigure('info', 'toto.log');
+    log.reconfigure({level: 'info', file: 'toto.log'});
 
 Will now write into `toto.log`
 
 Your custom logger:
 
     var log4node = require('log4node');
-        log = new log4node.Log4Node('warning', 'test.log');
+        log = new log4node.Log4Node({level: 'warning', file: 'test.log'});
 
     log.error("this is a log");
     log.debug("this is a debug log");
