@@ -1,4 +1,5 @@
-var helper = require('./helper.js');
+var helper = require('./helper.js'),
+    fs = require('fs');
 
 helper.create_test('cluster-stdout-sig', 'cluster-stdout-sig/test1.js', null, function() {
   helper.logrotate(function(logrotate) {
