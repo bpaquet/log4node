@@ -100,11 +100,11 @@ You can create a new logger with its own level and prefix for a sub-component.
 The logs will be send to the same files with a prefix.
 
     log = new log4node.Log4Node('warning', 'test.log');
-    sublogger1 = log.clone('error', "SUBMODULE - ");
+    sublogger1 = log.clone("SUBMODULE - ", 'error');
 
 or with the default logger
 
-    sublogger1 = log4node.clone('error', "SUBMODULE - "),
+    sublogger1 = log4node.clone("SUBMODULE - ", 'error'),
 
 # License
 
