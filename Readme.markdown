@@ -94,6 +94,18 @@ Example of logrotate file:
       endscript
     }
 
+## Create a specialized logger
+This feature is provided to specialize a logger for a sub-component.
+You can create a new logger with its own level and prefix for a sub-component.
+The logs will be send to the same files with a prefix.
+
+    log = new log4node.Log4Node('warning', 'test.log');
+    sublogger1 = log.clone("SUBMODULE - ", 'error');
+
+or with the default logger
+
+    sublogger1 = log4node.clone("SUBMODULE - ", 'error'),
+
 # License
 
 Copyright 2012 Bertrand Paquet
