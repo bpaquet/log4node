@@ -1,7 +1,6 @@
-var log4node = require('log4node'),
-    log = new log4node.Log4Node({level: 'warning', file: 'test.log'});
+var log = require('log4node');
 
-log.setPrefix("%l %p : ");
+log.reconfigure({level: 'warning', file: 'test.log', prefix: "%l %p : "});
 
 var sublogger1 = log.clone({prefix: "SUB1 - "});
 var sublogger2 = log.clone({prefix: "SUB2 - ", level: 'error'});
