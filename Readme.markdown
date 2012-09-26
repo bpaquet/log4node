@@ -112,7 +112,7 @@ sublogger1 = log.clone({prefix:'SUBMODULE - ', level:'error');
 or with the default logger
 
 ```js
-sublogger1 = log4node.clone(prefix:'SUBMODULE - ", level:'error');
+sublogger1 = log4node.clone(prefix:'SUBMODULE - ', level:'error');
 ```
 
 # License
