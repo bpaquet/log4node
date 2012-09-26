@@ -1,6 +1,6 @@
 var cluster = require('cluster'),
     log4node = require('../../lib/log4node'),
-    log = new log4node.Log4Node('warning', 'test.log');
+    log = new log4node.Log4Node({prefix:'warning', file:'test.log'});
 
 log.setPrefix("%l %p : ");
 
@@ -16,7 +16,7 @@ if (cluster.isMaster) {
   });
 
 } else {
-  var workerLog = log.clone({"prefix" : "WORKER - "});
+  var workerLog = log.clone({prefix: "WORKER - "});
 
   workerLog.error("Hello, I'm a worker");
   setTimeout(function() {
