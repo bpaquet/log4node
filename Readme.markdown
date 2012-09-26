@@ -17,11 +17,11 @@ This module is inspired from [this module](https://github.com/visionmedia/log.js
 ## Usage
 
 Default logger:
+```js
+var log = require('log4node');
 
-    var log = require('log4node');
-
-    log.error("this is a log");
-
+log.error("this is a log");
+```
 Will output to console.
 
 Note: you can reconfigure default logger by calling
@@ -31,12 +31,15 @@ Note: you can reconfigure default logger by calling
 Will now write into `toto.log`
 
 Your custom logger:
+```js
+var log4node = require('log4node');
+    log = new log4node.Log4Node({level: 'warning', file: 'test.log'});
 
-    var log4node = require('log4node');
-        log = new log4node.Log4Node({level: 'warning', file: 'test.log'});
+log.error("this is a log");
+log.debug("this is a debug log");
+```
 
-    log.error("this is a log");
-    log.debug("this is a debug log");
+Note : you can use the syntax accepted by [`utils.format`](http://nodejs.org/api/util.html#util_util_format_format).
 
 ## Log level
 
@@ -61,7 +64,9 @@ Available log levels are:
 
 Prefix of log lines can be changed:
 
-    log.setPrefix("%d - %p ");
+```js
+log.setPrefix("%d - %p ");
+```
 
 You can use following field in prefix:
 * `%d`: current date
@@ -78,7 +83,7 @@ Setup is fully transparent for developper.
 
 A full example can be found [here](https://github.com/bpaquet/log4node/blob/master/test/cluster/test1.js).
 
-## Repoen log file
+## Reopen log file
 
 Just send USR2 signal to node process, or, in cluster mode, to master node process:
 
@@ -93,6 +98,22 @@ Example of logrotate file:
         kill -USR2 `cat process.pid`
       endscript
     }
+
+## Create a specialized logger
+This feature is provided to specialize a logger for a sub-component.
+You can create a new logger with its own level and prefix for a sub-component.
+The logs will be send to the same files with a prefix.
+
+```js
+log = new log4node.Log4Node('warning', 'test.log');
+sublogger1 = log.clone({prefix:'SUBMODULE - ', level:'error');
+```
+
+or with the default logger
+
+```js
+sublogger1 = log4node.clone(prefix:'SUBMODULE - ', level:'error');
+```
 
 # License
 
