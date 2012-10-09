@@ -32,7 +32,7 @@ function launch(command, args, pid_file, callback) {
 
 function remove_test_files() {
   fs.readdirSync('.').forEach(function(i) {
-    if (i.match(/^test.log.*$/)) {
+    if (i.match(/^test.log.*$/) || i.match(/^process.*/)) {
       fs.unlinkSync(i);
     }
   });
