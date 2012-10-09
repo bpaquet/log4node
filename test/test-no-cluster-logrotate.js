@@ -4,7 +4,7 @@ helper.create_test('no-cluster-logrotate', 'no-cluster-logrotate/test1.js', 'no-
   helper.logrotate(function(logrotate) {
     setTimeout(function() {
       helper.check_file("no-cluster-logrotate/output1");
-      helper.launch(logrotate, ['-f', 'no-cluster-logrotate/logrotate.conf'], null, function(code) {});
+      helper.launch(logrotate, ['-f', 'no-cluster-logrotate/logrotate.conf', '-s', '/tmp/s'], null, function(code) {});
     }, 200);
   });
 }, function() {

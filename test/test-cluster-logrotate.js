@@ -4,7 +4,7 @@ helper.create_test('cluster-logrotate', 'cluster-logrotate/test1.js', 'cluster-l
   helper.logrotate(function(logrotate) {
     setTimeout(function() {
       helper.check_file("cluster-logrotate/output1");
-      helper.launch(logrotate, ['-f', 'cluster-logrotate/logrotate.conf'], null, function(code) {});
+      helper.launch(logrotate, ['-f', 'cluster-logrotate/logrotate.conf', '-s', '/tmp/s'], null, function(code) {});
     }, 500);
   });
 }, function() {

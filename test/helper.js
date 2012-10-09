@@ -9,7 +9,11 @@ function launch(command, args, pid_file, callback) {
   var stdout = '';
 
   if (pid_file) {
-    fs.writeFileSync('process.pid', child.pid);
+    fs.writeFile(pid_file, child.pid, function(err) {
+      if (err) {
+        return console.warn(err);
+      }
+    });
   }
 
   child.stdout.on('data', function (data) {
@@ -32,7 +36,10 @@ function remove_test_files() {
       fs.unlinkSync(i);
     }
   });
-};
+  if (fs.existsSync('/tmp/s')) {
+    fs.unlinkSync('/tmp/s');
+  }
+}
 
 function check_content(content, file) {
   regexp = fs.readFileSync(file, 'utf-8');
