@@ -81,7 +81,7 @@ You can also use a function to specify prefix :
 log.setPrefix(function(level) {
   return 'toto ' + (new Date()).toString() + ' ';
 });
-```js
+```
 
 ## Cluster mode
 
