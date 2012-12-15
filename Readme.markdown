@@ -75,6 +75,14 @@ You can use following field in prefix:
 
 Default prefix is: `[%d] %l `
 
+You can also use a function to specify prefix :
+
+```js
+log.setPrefix(function(level) {
+  return 'toto ' + (new Date()).toString() + ' ';
+});
+```js
+
 ## Cluster mode
 
 Workers processes will send logs to the cluster master for writing to file.
