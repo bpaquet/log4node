@@ -6,8 +6,12 @@ var helper = require('./helper.js'),
 
 vows.describe('Test ').addBatch({
   'set string prefix': {
-    'topic': function() {
-      var logger = new log4node.Log4Node({level: 'info', file: 'test.log', prefix: '%l '});
+    topic: function() {
+      var logger = new log4node.Log4Node({
+        level: 'info',
+        file: 'test.log',
+        prefix: '%l '
+      });
 
       logger.info('start');
 
@@ -16,7 +20,8 @@ vows.describe('Test ').addBatch({
         callback(null);
       }, 200);
     },
-    'check': function(err) {
+
+    check: function(err) {
       assert.ifError(err);
       helper.check_file_content('test.log', 'INFO start\n');
       helper.remove_test_files();
@@ -24,12 +29,15 @@ vows.describe('Test ').addBatch({
   }
 }).addBatch({
   'set function prefix': {
-    'topic': function() {
+    topic: function() {
       var v = Math.random();
-      var logger = new log4node.Log4Node({level: 'info', file: 'test.log',
-                                          prefix: function(level) {
-                                            return util.format('[ %d ] %s ', v, level.toUpperCase());
-                                          }});
+      var logger = new log4node.Log4Node({
+        level: 'info',
+        file: 'test.log',
+        prefix: function(level) {
+          return util.format('[ %d ] %s ', v, level.toUpperCase());
+        }
+      });
 
       logger.info('start');
 
@@ -38,7 +46,8 @@ vows.describe('Test ').addBatch({
         callback(null, v);
       }, 200);
     },
-    'check': function(err, v) {
+
+    check: function(err, v) {
       assert.ifError(err);
       helper.check_file_content('test.log', '[ ' + v + ' ] INFO start\n');
       helper.remove_test_files();
