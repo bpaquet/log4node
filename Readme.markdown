@@ -1,5 +1,7 @@
 # Overview
 
+[![Build Status](https://travis-ci.org/bpaquet/log4node.png)](https://travis-ci.org/bpaquet/log4node)
+
 This module is designed to be used with Node Cluster in production:
 * one log file for all workers
 * compatible with logrotate: an USR2 signal reopen the log file
