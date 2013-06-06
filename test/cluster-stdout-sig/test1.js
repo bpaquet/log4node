@@ -18,5 +18,5 @@ if (cluster.isMaster) {
   log.error("Hello, I'm a worker");
   setTimeout(function() {
     process.exit();
-  }, 100);
+  }, 500);
 }

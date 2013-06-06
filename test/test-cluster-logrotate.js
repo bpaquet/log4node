@@ -1,10 +1,14 @@
-var helper = require('./helper.js');
+var helper = require('./helper.js'),
+    assert = require('assert');
 
-helper.create_test('cluster-logrotate', 'cluster-logrotate/test1.js', 'cluster-logrotate/output2', function() {
+helper.create_test('cluster-logrotate', 'cluster-logrotate/test1.js', 'cluster-logrotate/output2', function(callback) {
   helper.logrotate(function(logrotate) {
     setTimeout(function() {
       helper.check_file("cluster-logrotate/output1");
-      helper.launch(logrotate, ['-f', 'cluster-logrotate/logrotate.conf', '-s', '/tmp/s'], null, function(code) {});
+      helper.launch(logrotate, ['-f', 'cluster-logrotate/logrotate.conf', '-s', '/tmp/s'], null, function(code) {
+        assert.equal(0, code);
+        callback();
+      });
     }, 500);
   });
 }, function() {
