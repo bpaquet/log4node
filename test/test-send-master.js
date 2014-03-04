@@ -13,6 +13,9 @@ vows.describe('Test process.send').addBatch({
         calls ++;
       };
 
+      log4node.info('log me baby');
+
+      log4node.close();
       process.connected = true;
 
       log4node.info('log me baby');
@@ -30,4 +33,3 @@ vows.describe('Test process.send').addBatch({
     }
   }
 }).export(module);
-
