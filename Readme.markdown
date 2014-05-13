@@ -125,6 +125,10 @@ or with the default logger
 sublogger1 = log4node.clone(prefix:'SUBMODULE - ', level:'error');
 ```
 
+## Mutliple instanciation
+
+If you have a module A which depends of log4node, and a module B which also depends of log4node, you have to use only one instance, for example by giving the log4node instance of A to B.
+
 # License
 
 Copyright 2012 Bertrand Paquet
