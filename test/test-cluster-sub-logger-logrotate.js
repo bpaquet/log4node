@@ -9,7 +9,7 @@ helper.create_test('cluster-sub-logger-logrotate', 'cluster-sub-logger-logrotate
         assert.equal(0, code);
         callback();
       });
-    }, 500);
+    }, 1000);
   });
 }, function() {
   helper.check_file("cluster-sub-logger-logrotate/output1", "test.log.1");

@@ -27,5 +27,5 @@ if (cluster.isMaster) {
         process.exit();
       }, 200);
     }, 2000);
-  }, 200);
+  }, 100);
 }

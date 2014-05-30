@@ -1,7 +1,7 @@
 var helper = require('./helper.js'),
     assert = require('assert');
 
-helper.create_test('cluster-logrotate', 'cluster-logrotate/test1_ipc.js', 'cluster-logrotate/output2', function(callback) {
+helper.create_test('cluster-logrotate-multi-append', 'cluster-logrotate/test1_multi_append.js', 'cluster-logrotate/output2', function(callback) {
   helper.logrotate(function(logrotate) {
     setTimeout(function() {
       helper.check_file("cluster-logrotate/output1");
