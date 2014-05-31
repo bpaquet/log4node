@@ -1,5 +1,3 @@
-process.env.DISABLE_LOG4NODE_IPC = 1;
-
 var cluster = require('cluster'),
     log4node = require('log4node'),
     log = new log4node.Log4Node({level: 'warning', file: 'test.log'});
@@ -17,15 +15,11 @@ if (cluster.isMaster) {
     log.error('Worker ' + worker.process.pid + ' died');
   });
 } else {
-  // will not be printed : no_ipc, and logger not initialized
-  log.error('toto');
+  log.error("Hello, I'm a worker");
   setTimeout(function() {
-    log.error("Hello, I'm a worker");
+    log.error("Hello one more time");
     setTimeout(function() {
-      log.error("Hello one more time");
-      setTimeout(function() {
-        process.exit();
-      }, 200);
-    }, 2000);
-  }, 100);
+      process.exit();
+    }, 200);
+  }, 2000);
 }

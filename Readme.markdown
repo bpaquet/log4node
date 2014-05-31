@@ -129,6 +129,12 @@ sublogger1 = log4node.clone(prefix:'SUBMODULE - ', level:'error');
 
 If you have a module A which depends of log4node, and a module B which also depends of log4node, you have to use only one instance, for example by giving the log4node instance of A to B.
 
+# Changelog
+
+## Version 0.1.5
+
+- In cluster mode, workers open the log files in append mode instead of sending logs to the master. You can revert to the old way (always send log to master).
+
 # License
 
 Copyright 2012 Bertrand Paquet

@@ -1,3 +1,5 @@
+process.env.LOG4NODE_USE_IPC = 1;
+
 var cluster = require('cluster'),
     log4node = require('log4node'),
     log = new log4node.Log4Node({level: 'warning', file: 'test.log'});
@@ -15,13 +17,11 @@ if (cluster.isMaster) {
     log.error('Worker ' + worker.process.pid + ' died');
   });
 } else {
+  log.error("Hello, I'm a worker");
   setTimeout(function() {
-    log.error("Hello, I'm a worker");
+    log.error("Hello one more time");
     setTimeout(function() {
-      log.error("Hello one more time");
-      setTimeout(function() {
-        process.exit();
-      }, 500);
-    }, 1500);
-  }, 200);
+      process.exit();
+    }, 500);
+  }, 1500);
 }
