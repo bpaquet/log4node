@@ -1,8 +1,6 @@
-var helper = require('./helper.js'),
-    vows = require('vows'),
+var vows = require('vows'),
     assert = require('assert'),
-    log4node = require('log4node'),
-    util = require('util');
+    log4node = require('log4node');
 
 vows.describe('Test ').addBatch({
   'write callback': {
@@ -39,7 +37,7 @@ vows.describe('Test ').addBatch({
       var l = [];
       var logger = new log4node.Log4Node({
         level: 'info',
-        write_callback: function(s) {
+        write_callback: function() {
           throw new Error('toto');
         },
         prefix: '%l '

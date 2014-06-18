@@ -26,9 +26,9 @@ function launch(command, args, pid_file, callback) {
   });
 
   child.on('exit', function(code) {
-    callback(code, stdout)
+    callback(code, stdout);
   });
-};
+}
 
 function remove_test_files() {
   fs.readdirSync('.').forEach(function(i) {
@@ -42,25 +42,25 @@ function remove_test_files() {
 }
 
 function check_content(content, file) {
-  regexp = fs.readFileSync(file, 'utf-8');
-  if (!content.match(new RegExp("^" + regexp + "$"))) {
-    console.log("Content");
+  var regexp = fs.readFileSync(file, 'utf-8');
+  if (!content.match(new RegExp('^' + regexp + '$'))) {
+    console.log('Content');
     console.log(content);
-    console.log("Regexp");
+    console.log('Regexp');
     console.log(regexp);
-    assert.fail("File not match");
+    assert.fail('File not match');
   }
 }
 
 function check_content_async(content, file, callback) {
   fs.readFile(file, 'utf-8', function(err, regexp) {
     assert.ifError(err);
-    if (!content.match(new RegExp("^" + regexp + "$"))) {
-      console.log("Content");
+    if (!content.match(new RegExp('^' + regexp + '$'))) {
+      console.log('Content');
       console.log(content);
-      console.log("Regexp");
+      console.log('Regexp');
       console.log(regexp);
-      assert.fail("File not match");
+      assert.fail('File not match');
     }
     callback();
   });
@@ -68,12 +68,12 @@ function check_content_async(content, file, callback) {
 
 function check_file(file, target_file) {
   target_file = target_file || 'test.log';
-  content = fs.readFileSync(target_file, 'utf-8');
+  var content = fs.readFileSync(target_file, 'utf-8');
   check_content(content, file);
 }
 
 function check_file_async(file, target_file, callback) {
-  if (typeof target_file == 'function') {
+  if (typeof target_file === 'function') {
     callback = target_file;
     target_file = undefined;
   }
@@ -85,7 +85,7 @@ function check_file_async(file, target_file, callback) {
 }
 
 function check_file_content(file, expected_content) {
-  content = fs.readFileSync(file, 'utf-8');
+  var content = fs.readFileSync(file, 'utf-8');
   assert.equal(content, expected_content);
 }
 
@@ -104,14 +104,14 @@ MultipleHandler.prototype.main = function(code, stdout) {
 
 MultipleHandler.prototype.end = function() {
   this.counter = this.counter - 1;
-  if (this.counter == 0) {
+  if (this.counter === 0) {
     this.callback(null, this.code, this.stdout);
   }
-}
+};
 
 function create_test(name, file_to_launch, final_file, topic_callback, check_callback, test_callback) {
-  test_name = file_to_launch.match(/\/([^\/]+)\.js$/)[1]
-  test = {}
+  var test_name = file_to_launch.match(/\/([^\/]+)\.js$/)[1];
+  var test = {};
   test[test_name] = {
     topic: function () {
       remove_test_files();
@@ -139,24 +139,23 @@ function create_test(name, file_to_launch, final_file, topic_callback, check_cal
         check_file(final_file);
       }
     },
-
-  }
+  };
   if (check_callback) {
-    test[test_name]['specific_check'] = function(err, code, stdout) {
+    test[test_name].specific_check = function(err, code, stdout) {
       check_callback(stdout);
-    }
+    };
   }
   test[test_name]['remove test files'] = function() {
     remove_test_files();
-  }
+  };
   return vows.describe(name).addBatch(test);
 }
 
 function logrotate(callback) {
   whereis('logrotate', function(err, res) {
     if(err) {
-      console.log("You must have logrotate in your path to run all tests.");
-     return process.exit(1);
+      console.log('You must have logrotate in your path to run all tests.');
+      return process.exit(1);
     }
     callback(res);
   });

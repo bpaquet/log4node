@@ -114,7 +114,7 @@ vows.describe('Test ').addBatch({
           return util.format('[ %d ] %s ', v, level.toUpperCase());
         }
       });
-      
+
       var logger = new log4node.Log4Node({parent: parent_logger});
 
       logger.info('start');
@@ -142,7 +142,7 @@ vows.describe('Test ').addBatch({
           return util.format('[ %d ] %s ', v, level.toUpperCase());
         }
       });
-      
+
       var logger = new log4node.Log4Node({parent: parent_logger, prefix: function() {return 'tata ';}});
 
       logger.info('start');

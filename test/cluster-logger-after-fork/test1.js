@@ -8,8 +8,8 @@ if (cluster.isMaster) {
   var log = new log4node.Log4Node({level: 'warning', file: 'test.log'});
 } else {
   var log = new log4node.Log4Node({level: 'warning', file: 'test.log'});
-  log.setPrefix("%l %p : ");
-  log.error("Hello, I'm a worker");
+  log.setPrefix('%l %p : ');
+  log.error('Hello, I\'m a worker');
   setTimeout(function() {
     process.exit();
   }, 100);

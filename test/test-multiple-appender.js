@@ -18,7 +18,7 @@ helper.create_test('multiple-appender', 'multiple-appender/test1.js', 'multiple-
   }, 20);
   helper.logrotate(function(logrotate) {
     setTimeout(function() {
-      helper.launch(logrotate, ['-f', 'multiple-appender/logrotate.conf', '-s', '/tmp/s'], null, function(code) {});
+      helper.launch(logrotate, ['-f', 'multiple-appender/logrotate.conf', '-s', '/tmp/s'], null, function() {});
     }, 200);
   });
   setTimeout(function() {

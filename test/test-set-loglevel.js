@@ -13,7 +13,7 @@ vows.describe('Test ').addBatch({
       logger.info('start');
       logger.setLogLevel('critical');
       logger.info('stop');
-      logger.critical('stop_critical')
+      logger.critical('stop_critical');
 
       var callback = this.callback;
       setTimeout(function() {

@@ -9,7 +9,7 @@ vows.describe('Test process.send').addBatch({
       // setup process as a worker process
       cluster.isMaster = false;
       var calls = 0;
-      process.send = function(args) {
+      process.send = function() {
         calls ++;
       };
 

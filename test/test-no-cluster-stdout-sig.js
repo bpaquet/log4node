@@ -4,7 +4,7 @@ var helper = require('./helper.js'),
 
 helper.create_test('no-cluster-stdout-sig', 'no-cluster-stdout-sig/test1.js', null, function(callback) {
   setTimeout(function() {
-    helper.launch("kill", ['-USR2', fs.readFileSync('process.pid')], null, function(code) {
+    helper.launch('kill', ['-USR2', fs.readFileSync('process.pid')], null, function(code) {
       assert.equal(code, 0);
       callback();
     });
