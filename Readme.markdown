@@ -143,6 +143,10 @@ log = new log4node.Log4Node({
 
 # Changelog
 
+## Version 0.1.6
+
+- Add write callback
+
 ## Version 0.1.5
 
 - In cluster mode, workers open the log files in append mode instead of sending logs to the master. You can revert to the old way (always send log to master).
