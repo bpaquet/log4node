@@ -115,7 +115,7 @@ You can create a new logger with its own level and prefix for a sub-component.
 The logs will be send to the same files with a prefix.
 
 ```js
-log = new log4node.Log4Node('warning', 'test.log');
+log = new log4node.Log4Node({log_level: 'warning', file: 'test.log'});
 sublogger1 = log.clone({prefix:'SUBMODULE - ', level:'error');
 ```
 
@@ -128,6 +128,18 @@ sublogger1 = log4node.clone(prefix:'SUBMODULE - ', level:'error');
 ## Mutliple instanciation
 
 If you have a module A which depends of log4node, and a module B which also depends of log4node, you have to use only one instance, for example by giving the log4node instance of A to B.
+
+
+## Write callback
+
+If you want to plug a custom transport, just specify a write_callback
+```js
+log = new log4node.Log4Node({
+  write_callback: function(line) {
+  // do something with the formatted line of log.
+  }
+});
+```
 
 # Changelog
 
